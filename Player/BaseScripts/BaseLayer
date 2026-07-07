@@ -1,0 +1,28 @@
+namespace _Scripts.Player.BaseScripts
+{
+    public abstract class BaseLayer
+    {
+        protected PlayerContext context;
+
+        protected BaseState currentState;
+
+        public BaseLayer(PlayerContext ctx) => context = ctx;
+
+        public virtual void FrameTick() => currentState?.FrameTick();
+        public virtual void PhysicsTick() => currentState?.PhysicsTick();
+
+        public virtual void TransitionTo(BaseState newState)
+        {
+            if (currentState == newState) return;
+            
+            ChangeState(newState);
+        }
+        
+        public virtual void ChangeState(BaseState newState)
+        {
+            currentState?.Exit();
+            currentState = newState;
+            currentState.Enter();
+        }
+    }
+}
