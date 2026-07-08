@@ -6,13 +6,13 @@ namespace _Scripts.Player.States
 {
     public class JumpState : BaseState
     {
-        public JumpState(PlayerContext ctx) : base(ctx) { JumpTimer = new Timer(context.Config.JumpCooldown); }
+        public JumpState(PlayerContext ctx) : base(ctx) { JumpGameTimer = new GameTimer(context.Config.JumpCooldown); }
 
-        public readonly Timer JumpTimer;
+        public readonly GameTimer JumpGameTimer;
         
         public override void Enter()
         {
-            JumpTimer.Start();
+            JumpGameTimer.Start();
             
             context.PlayerMotor.SetGravityScale(context.Config.NormalGravityScale);
             context.PlayerMotor.OverrideVelocity(new Vector2(context.Velocity.x, 0f));
