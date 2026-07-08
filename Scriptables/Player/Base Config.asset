@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::_Scripts.Scriptables.Player.MovementConfig
   NormalGravityScale: 10
   FallGravityScale: 15
+  MaxFallSpeed: 60
   RunSpeed: 25
   RunAcceleration: 15
   RunDeceleration: 10
@@ -34,3 +35,8 @@ MonoBehaviour:
   WallJumpCooldown: 0.2
   WallJumpCoyoteTime: 0.15
   WallJumpBufferTime: 0.1
+  WallJumpVerVelThreshold: 50
+  DashDuration: 0.2
+  DashCooldown: 0.75
+  DashSpeed: 50
+  DashVelocityCutMulti: 0.3
