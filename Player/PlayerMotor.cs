@@ -62,7 +62,8 @@ namespace _Scripts.Player
             #endregion
 
             #region Physics
-            
+
+            _rb.linearVelocityY = Mathf.Clamp(_rb.linearVelocityY, -configSO.MaxFallSpeed, float.MaxValue);
             _context.Velocity = _rb.linearVelocity;
             _context.GravityScale = _rb.gravityScale;
 
@@ -93,24 +94,6 @@ namespace _Scripts.Player
             _verticalFSM.PhysicsTick();
         }
         
-        #region Gizmos
-        
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = ColorSetter(_context.OnGround, Color.green, Color.red);
-            Gizmos.DrawWireCube(transform.position - transform.up * groundCheck.BoxDistance, groundCheck.BoxSize);
-            
-            Gizmos.color = ColorSetter(_context.OnLeftWall, Color.green, Color.red);
-            Gizmos.DrawWireCube(transform.position - transform.right * wallCheck.BoxDistance, wallCheck.BoxSize);
-            
-            Gizmos.color = ColorSetter(_context.OnRightWall, Color.green, Color.red);
-            Gizmos.DrawWireCube(transform.position + transform.right * wallCheck.BoxDistance, wallCheck.BoxSize);
-        }
-        
-        private Color ColorSetter(bool condition, Color trueColor, Color falseColor) => condition ? trueColor : falseColor;
-
-        #endregion
-
         #region Physics Functions
         
         public void AddForce(Vector2 force, bool useImpulse) => _rb.AddForce(force, useImpulse ? ForceMode2D.Impulse : ForceMode2D.Force);
