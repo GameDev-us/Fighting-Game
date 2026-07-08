@@ -6,6 +6,6 @@ namespace _Scripts.Player.BaseScripts
         
         bool CanActivate();
         bool CanDeactivate();
-        void UpdateGraceTimers() {}
+        void UpdateTimers() {}
     }
 }
