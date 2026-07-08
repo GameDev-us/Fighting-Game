@@ -18,6 +18,7 @@ namespace _Scripts.Player.Layers
             _abilities.Add(_noOverride);
             _abilities.Add(new ClimbState(ctx));
             _abilities.Add(new WallJumpState(ctx));
+            _abilities.Add(new DashState(ctx));
 
             currentState = _noOverride;
         }
@@ -29,7 +30,7 @@ namespace _Scripts.Player.Layers
         {
             foreach (var ability in _abilities)
             {
-                ability.UpdateGraceTimers();
+                ability.UpdateTimers();
                 if (ability.Priority == _nextAbility.Priority) continue;
 
                 if (ability.CanActivate() && _nextAbility.CanDeactivate())
